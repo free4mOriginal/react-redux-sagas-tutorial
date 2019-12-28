@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import useFetch from "../hooks/useFetch";
 
 const Post = () => {
-  const [remote, setRemote] = useState([]);
-  const [er, setEr] = useState([]);
-
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(res => res.json())
-      .then(data => setRemote(data.slice(0, 10)))
-      .catch(err => setEr(err));
-  }, []);
+  const articles = useFetch("https://jsonplaceholder.typicode.com/posts");
 
   return (
     <ul>
-      {remote.length !== 0 ? (
-        remote.map(el => <li key={el.id}>{el.title}</li>)
+      {articles.data.length !== 0 ? (
+        articles.data.map(el => <li key={el.id}>{el.title}</li>)
       ) : (
-        <li>ERROR: {er.message}</li>
+        <li>ERROR: {articles.er.message}</li>
       )}
     </ul>
   );
