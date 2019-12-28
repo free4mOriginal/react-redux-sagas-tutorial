@@ -1,3 +1,3 @@
-## React-Redux tut
+## React-Redux-Sagas tutorial
 
-Complete Redux functionality with basic React component (no styling sugar)
+Complete Redux functionality with basic React components (no styling sugar), sagas for asynchronous API call, and Hooks in the Form component.
