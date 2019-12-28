@@ -2,25 +2,23 @@ import React, { useState, useEffect } from "react";
 
 const Post = () => {
   const [remote, setRemote] = useState([]);
-  const [er, setEr] = useState([])
+  const [er, setEr] = useState([]);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then(res => res.json())
       .then(data => setRemote(data.slice(0, 10)))
-      .catch(err => setEr(err))
+      .catch(err => setEr(err));
   }, []);
 
   return (
-    <div>
-      <ul>
-        {remote.length !== 0 ? (
-          remote.map(el => <li key={el.id}>{el.title}</li>)
-        ) : (
-          <li>ERROR: {er.message}</li>
-        )}
-      </ul>
-    </div>
+    <ul>
+      {remote.length !== 0 ? (
+        remote.map(el => <li key={el.id}>{el.title}</li>)
+      ) : (
+        <li>ERROR: {er.message}</li>
+      )}
+    </ul>
   );
 };
 
